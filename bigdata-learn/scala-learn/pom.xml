@@ -10,11 +10,30 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>scalca-learn</artifactId>
+    <artifactId>scala-learn</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <!-- 添加 Scala 编译插件 -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 其他插件配置 -->
+        </plugins>
+    </build>
 </project>
