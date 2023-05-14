@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <context:property-placeholder location="jdbc.properties"/>
+    <bean id="druid" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${jdbc.url}"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="druid"/>
+    </bean>
+
+    <!--配置平台事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druid"/>
+    </bean>
+
+    <context:component-scan base-package="com.lly"/>
+    <!--事务的注解驱动-->
+    <tx:annotation-driven/>
+
+    <!--
+        <bean id="accountDao" class="com.lly.dao.impl.AccountDaoImpl">
+            <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        </bean>
+
+
+        <bean id="accountService" class="com.lly.service.impl.AccountServiceImpl">
+            <property name="accountDao" ref="accountDao"/>
+        </bean>-->
+
+
+    <!--
+
+      &lt;!&ndash;配置 事务的增强&ndash;&gt;
+      <tx:advice id="txAdvice" transaction-manager="transactionManager">
+          &lt;!&ndash;事务的属性&ndash;&gt;
+          <tx:attributes>
+              &lt;!&ndash;哪些方法被增强&ndash;&gt;
+              &lt;!&ndash;可以对特定方法指定隔离级别 事务传播等级等&ndash;&gt;
+              <tx:method name="*"/>
+          </tx:attributes>
+      </tx:advice>
+
+      &lt;!&ndash;配置AOP事务织入&ndash;&gt;
+      <aop:config>
+          <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lly.service.impl.*.*(..))"/>
+      </aop:config>-->
+</beans>

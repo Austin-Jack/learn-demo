@@ -1,0 +1,14 @@
+server:
+  port: 19002
+
+spring:
+  application:
+    name: csrftesthacker
+
+
+
+  thymeleaf:
+    cache: false
+
+
+

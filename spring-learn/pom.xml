@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>learn-demo</artifactId>
+        <groupId>cn.llynsyw</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-learn</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>spring-ioc</module>
+        <module>spring-aop</module>
+        <module>spring-configuration-metadata</module>
+        <module>spring-data</module>
+        <module>spring-datasource</module>
+        <module>spring-exception</module>
+        <module>spring-interceptor</module>
+        <module>spring-tx</module>
+        <module>spring-test</module>
+        <module>spring-mvc</module>
+        <module>spring-jdbc</module>
+    </modules>
+
+
+</project>

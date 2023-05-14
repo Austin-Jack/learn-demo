@@ -1,0 +1,76 @@
+package cn.llynsyw.bigdata.mapreduce.joinOnMapper;
+
+
+
+import org.apache.hadoop.io.WritableComparable;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
+/**
+ * TODO
+ *
+ * @author luolinyuan
+ * @date 2023/1/21
+ **/
+public class OrderBean implements WritableComparable<OrderBean> {
+	private String orderId;
+	private Integer amount;
+	private String productName;
+
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public OrderBean() {
+	}
+
+
+	@Override
+	public void write(DataOutput dataOutput) throws IOException {
+		dataOutput.writeUTF(this.orderId);
+		dataOutput.writeInt(this.amount);
+		dataOutput.writeUTF(this.productName);
+	}
+
+	@Override
+	public void readFields(DataInput dataInput) throws IOException {
+		this.orderId = dataInput.readUTF();
+		this.amount = dataInput.readInt();
+		this.productName = dataInput.readUTF();
+	}
+
+	@Override
+	public String toString() {
+		return this.orderId + "\t" + this.productName + "\t" + this.amount;
+	}
+
+	@Override
+	public int compareTo(OrderBean o) {
+		return this.orderId.compareTo(o.orderId);
+	}
+}

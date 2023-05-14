@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--空参构造出一个实例，并且默认为单例 prototype为多例-->
+
+    <!--无参构造创建-->
+    <bean id="userDao" class="com.lly.dao.impl.UserDaoImpl" init-method="init" destroy-method="destroy"/>
+    <!--静态工厂方式创建-->
+    <bean id="userDao2" class="com.lly.factory.StaticFactoryBean" factory-method="createUserDao"/>
+    <!--动态工厂方式创建-->
+    <bean id="factoryBean" class="com.lly.factory.DynamicFactoryBean"/>
+    <bean id="userDao3" factory-bean="factoryBean" factory-method="createUserDao"/>
+
+    <!--依赖注入-->
+    <!--1.set方法注入-->
+    <bean id="userService1" class="com.lly.service.impl.UserServiceImpl">
+        <!--使用property 调用set方法注入 name为set方法后名称首字母小写-->
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <!--使用p命名空间的set注入方式-->
+    <bean id="userService2" class="com.lly.service.impl.UserServiceImpl" p:userDao-ref="userDao"/>
+
+    <bean id="userService3" class="com.lly.service.impl.UserServiceImpl">
+        <!--使用构造方法进行注入-->
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="lc" class="com.lly.pojo.User">
+        <property name="name" value="lc"/>
+        <property name="age" value="20"/>
+    </bean>
+    <bean id="lly" class="com.lly.pojo.User">
+        <!--普通类型用value注入-->
+        <property name="age" value="21"/>
+        <property name="name" value="lly"/>
+        <!--List<Object>集合注入-->
+        <property name="friends">
+            <list>
+                <value>lc</value>
+                <value>lhl</value>
+                <value>lp</value>
+                <!--注入对象-->
+                <ref bean="lc"/>
+            </list>
+        </property>
+        <property name="friendsMap">
+            <map>
+                <entry key="bestFriend" value-ref="lc"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean name="userDaoWithProp" class="com.lly.dao.impl.UserDaoImpl">
+        <property name="properties">
+            <props>
+                <prop key="username">lly</prop>
+                <prop key="password">1234</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

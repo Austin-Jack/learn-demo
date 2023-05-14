@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<cofig>
+    <className>template.classifier.NaiveBayesAdapter</className>
+</cofig>

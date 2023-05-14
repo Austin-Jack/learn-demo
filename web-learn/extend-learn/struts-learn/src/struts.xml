@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="">
+            <result>/WEB-INF/content/index.jsp</result>
+        </action>
+
+
+        <action name="HelloWorld" class="com.lly.action.HelloWorld">
+            <result>/WEB-INF/content/HelloWorld.jsp</result>
+        </action>
+        
+        <action name="login" class="com.lly.action.LoginActionWithSupport">
+            <result name="input">/WEB-INF/content/Login.jsp</result>
+            <result name="success">/WEB-INF/content/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>
+
+        <action name="register" class="com.lly.action.RegisterAction">
+            <result name="input">/WEB-INF/content/Register.jsp</result>
+            <result name="success">/WEB-INF/content/RegisterResult.jsp</result>
+            <result name="error">/WEB-INF/content/RegisterResult.jsp</result>
+        </action>
+
+        <action name="logout" class="com.lly.action.LogOut">
+            <result>/WEB-INF/content/index.jsp</result>
+        </action>
+
+        <action name="*">
+            <result>/WEB-INF/content/{1}.jsp</result>
+        </action>
+    </package>
+</struts>

