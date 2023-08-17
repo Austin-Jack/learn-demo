@@ -1,4 +1,4 @@
 <?xml version="1.0" ?>
 <config>
-    <className>builder.F1Builder</className>
+    <className>cn.llynsyw.design.pattern.exp.builder.F1Builder</className>
 </config>
