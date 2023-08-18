@@ -22,21 +22,18 @@ public class DateHandler extends BaseTypeHandler<Date> {
     @Override
     public Date getNullableResult(ResultSet resultSet, String s) throws SQLException {
         long aLong = resultSet.getLong(s);
-        Date date = new Date(aLong);
-        return date;
+        return new Date(aLong);
     }
 
     @Override
     public Date getNullableResult(ResultSet resultSet, int i) throws SQLException {
         long aLong = resultSet.getLong(i);
-        Date date = new Date(aLong);
-        return date;
+        return new Date(aLong);
     }
 
     @Override
     public Date getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         long aLong = callableStatement.getLong(i);
-        Date date = new Date(aLong);
-        return date;
+        return new Date(aLong);
     }
 }

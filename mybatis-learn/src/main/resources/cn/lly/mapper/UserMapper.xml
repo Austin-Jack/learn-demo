@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lly.service.UserService">
-    <select id="findAll" resultType="user">
-        SELECT * FROM mybatis_user
+<mapper namespace="cn.llynsyw.mybatis.dao.mapper.UserMapper">
+    <select id="findAll" resultType="cn.llynsyw.mybatis.domain.User">
+        SELECT *
+        FROM mybatis_user
     </select>
 
     <!--插入操作-->
-    <insert id="save" parameterType="com.lly.domain.User">
-        INSERT INTO mybatis_user
+    <insert id="save" parameterType="cn.llynsyw.mybatis.domain.User">
+        INSERT INTO mybatis_user(id, username, password)
         values (#{id}, #{username}, #{password})
     </insert>
 
-    <update id="changePassword" parameterType="com.lly.domain.User">
+    <update id="changePassword" parameterType="cn.llynsyw.mybatis.domain.User">
         UPDATE mybatis_user
         SET password = #{password}
         where id = ${id}
@@ -45,7 +46,7 @@
     </select>
 
     <select id="findByIds" parameterType="list" resultType="user">
-        SELECT * FROM  mybatis_user
+        SELECT * FROM mybatis_user
         <where>
             <foreach collection="list" open="id in (" close=")" item="id" separator=",">
                 #{id}
@@ -54,10 +55,13 @@
     </select>
 
     <insert id="dateType" parameterType="user">
-        INSERT INTO mybatis_user VALUES(#{id},#{username},#{password},#{birthday})
+        INSERT INTO mybatis_user(username, password, birthday)
+        VALUES (#{username}, #{password}, #{birthday})
     </insert>
 
-    <select id="getBirthday" parameterType="int" resultType="user">
-        SELECT * FROM mybatis_user WHERE id = #{id}
+    <select id="getBirthday" parameterType="user" resultType="user">
+        SELECT *
+        FROM mybatis_user
+        WHERE username = #{username}
     </select>
 </mapper>

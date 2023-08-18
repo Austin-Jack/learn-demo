@@ -7,13 +7,13 @@
 
     <!--配置类型的别名只能放在这-->
     <typeAliases>
-        <typeAlias type="com.lly.domain.User" alias="user"/>
+        <typeAlias type="cn.llynsyw.mybatis.domain.User" alias="user"/>
         <typeAlias type="java.util.List" alias="list"/>
     </typeAliases>
 
     <!--注册类型处理器-->
     <typeHandlers>
-        <typeHandler handler="com.lly.handler.DateHandler"/>
+        <typeHandler handler="cn.llynsyw.mybatis.handler.DateHandler"/>
     </typeHandlers>
 
     <!--配置分页助手插件-->
@@ -40,6 +40,6 @@
 
     <!--加载映射文件-->
     <mappers>
-        <mapper resource="com/lly/mapper/UserMapper.xml"/>
+        <mapper resource="cn/lly/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
