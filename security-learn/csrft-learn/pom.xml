@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>csrf-env</module>
+        <module>csrft-env</module>
         <module>csrft-hacker</module>
     </modules>
 
