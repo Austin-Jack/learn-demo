@@ -9,7 +9,8 @@
 
 package chapter06{
 
-  import cn.llynsyw.scala.chapter06.{commonMethod, commonValue}
+  import cn.llynsyw.bigdata.scala.chapter06.{commonMethod, commonValue}
+
 
   object Test02_PackageObject {
     def main(args: Array[String]): Unit = {
